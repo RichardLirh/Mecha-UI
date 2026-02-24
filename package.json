@@ -1,0 +1,27 @@
+{
+  "name": "mecha-ui-vue3",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Modern mecha-style Vue 3 component library with deep customization architecture.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build && vite build -c vite.lib.config.ts",
+    "build:app": "vite build",
+    "build:lib": "vite build -c vite.lib.config.ts",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/tsconfig": "^0.7.0",
+    "@types/node": "^22.10.1",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vue": "^3.5.13",
+    "vue-tsc": "^2.1.10"
+  }
+}

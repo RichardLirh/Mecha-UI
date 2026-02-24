@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Oxanium:wght@400;500;700&display=swap");
+
+@layer mecha-reset, mecha-base;
+
+@layer mecha-reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
+
+@layer mecha-base {
+  :where(.mecha-root) {
+    color: var(--mecha-text);
+    font-family: var(--mecha-font-body);
+    background:
+      radial-gradient(
+        1000px 600px at 10% -20%,
+        rgb(255 122 24 / 0.16),
+        transparent 52%
+      ),
+      radial-gradient(
+        800px 560px at 88% 0%,
+        rgb(32 214 255 / 0.2),
+        transparent 54%
+      ),
+      linear-gradient(to bottom, #060a10, #0b121d 42%, #070b11);
+  }
+
+  :where(.mecha-grid) {
+    position: relative;
+    overflow: hidden;
+  }
+
+  :where(.mecha-grid)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--mecha-grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--mecha-grid-line) 1px, transparent 1px);
+    background-size: 2.2rem 2.2rem;
+    mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
+  }
+}

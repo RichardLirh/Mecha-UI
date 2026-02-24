@@ -1,0 +1,23 @@
+:root {
+  --mecha-bg: #070b11;
+  --mecha-bg-elevated: #0d1320;
+  --mecha-bg-soft: #131d2b;
+  --mecha-surface: #182332;
+  --mecha-text: #dbe8f7;
+  --mecha-text-muted: #8fa9c2;
+  --mecha-accent: #ff7a18;
+  --mecha-accent-cool: #20d6ff;
+  --mecha-danger: #ff435a;
+  --mecha-border: rgb(75 103 132 / 0.48);
+  --mecha-grid-line: rgb(32 214 255 / 0.09);
+  --mecha-radius-sm: 6px;
+  --mecha-radius-md: 12px;
+  --mecha-radius-lg: 18px;
+  --mecha-shadow-ambient: 0 26px 74px rgb(0 0 0 / 0.52);
+  --mecha-shadow-glow: 0 0 24px rgb(32 214 255 / 0.32);
+  --mecha-font-display: "Oxanium", sans-serif;
+  --mecha-font-body: "Chakra Petch", sans-serif;
+  --mecha-motion-fast: 120ms;
+  --mecha-motion-base: 260ms;
+  --mecha-motion-slow: 520ms;
+}
