@@ -208,8 +208,8 @@ const onClick = async (event: MouseEvent) => {
   transform: perspective(980px) rotateX(var(--m-btn-tilt-x)) rotateY(var(--m-btn-tilt-y));
   filter: drop-shadow(0 6px 14px rgb(0 0 0 / 0.38));
   transition:
-    transform 180ms cubic-bezier(0.2, 0.76, 0.22, 1),
-    filter var(--mecha-motion-base) ease;
+    transform var(--mecha-motion-base) var(--mecha-ease-out),
+    filter var(--mecha-motion-base) var(--mecha-ease-out);
 }
 
 .m-button::before,
@@ -233,8 +233,8 @@ const onClick = async (event: MouseEvent) => {
   opacity: 0.18;
   transform: scale(0.94);
   transition:
-    opacity var(--mecha-motion-base) ease,
-    transform var(--mecha-motion-base) ease;
+    opacity var(--mecha-motion-base) var(--mecha-ease-out),
+    transform var(--mecha-motion-base) var(--mecha-ease-out);
 }
 
 .m-button::after {
@@ -246,12 +246,13 @@ const onClick = async (event: MouseEvent) => {
     transparent 72%
   );
   opacity: 0.2;
-  transition: opacity var(--mecha-motion-base) ease;
+  transition: opacity var(--mecha-motion-base) var(--mecha-ease-out);
 }
 
 .m-button:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--mecha-accent-cool) 76%, white);
   outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--mecha-focus-ring);
 }
 
 .m-button:disabled {
@@ -311,7 +312,7 @@ const onClick = async (event: MouseEvent) => {
 }
 
 .m-button__frame {
-  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 34%, transparent);
+  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 34%, var(--mecha-border));
   background: linear-gradient(
     to bottom,
     rgb(255 255 255 / 0.06),
@@ -459,9 +460,9 @@ const onClick = async (event: MouseEvent) => {
   letter-spacing: 0.12em;
   transform: translateZ(0);
   transition:
-    transform var(--mecha-motion-fast) ease,
-    filter var(--mecha-motion-fast) ease,
-    box-shadow var(--mecha-motion-base) ease;
+    transform var(--mecha-motion-fast) var(--mecha-ease-out),
+    filter var(--mecha-motion-fast) var(--mecha-ease-out),
+    box-shadow var(--mecha-motion-base) var(--mecha-ease-out);
   overflow: hidden;
 }
 
@@ -494,9 +495,9 @@ const onClick = async (event: MouseEvent) => {
   opacity: 0.34;
   transform: translateX(-2%);
   transition:
-    opacity var(--mecha-motion-base) ease,
-    transform var(--mecha-motion-fast) ease,
-    filter var(--mecha-motion-base) ease;
+    opacity var(--mecha-motion-base) var(--mecha-ease-out),
+    transform var(--mecha-motion-fast) var(--mecha-ease-out),
+    filter var(--mecha-motion-base) var(--mecha-ease-out);
 }
 
 .m-button:hover .m-button__surface::before {
@@ -664,13 +665,13 @@ const onClick = async (event: MouseEvent) => {
   background:
     linear-gradient(
       136deg,
-      color-mix(in srgb, var(--mecha-bg-elevated) 88%, #16263a) 0%,
-      color-mix(in srgb, var(--mecha-bg-soft) 75%, #0a1320) 100%
+      color-mix(in srgb, var(--mecha-panel-soft) 86%, #16263a) 0%,
+      color-mix(in srgb, var(--mecha-bg-soft) 74%, #0a1320) 100%
     );
   box-shadow:
     inset 0 0 0 1px color-mix(in srgb, var(--m-btn-cold) 44%, transparent),
     inset 0 10px 20px rgb(255 255 255 / 0.05),
-    0 10px 24px rgb(0 0 0 / 0.42);
+    var(--mecha-shadow-float);
 }
 
 .m-button--danger .m-button__surface {

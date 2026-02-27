@@ -359,42 +359,70 @@ const onRowClick = async (row: TableRow, index: number) => {
   inline-size: min(100%, 46rem);
   border-radius: var(--mecha-radius-md);
   background:
-    linear-gradient(168deg, rgb(255 255 255 / 0.07), transparent 46%),
-    color-mix(in srgb, var(--mecha-bg-soft) 84%, #09131f);
+    linear-gradient(168deg, rgb(255 255 255 / 0.1), transparent 46%),
+    color-mix(in srgb, var(--mecha-panel) 86%, #09131f);
+  overflow: clip;
+  box-shadow:
+    var(--mecha-shadow-float),
+    0 0 0 1px rgb(255 255 255 / 0.04) inset;
 }
 
 .m-table.is-bordered {
-  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 22%, #3f5670);
+  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 24%, #3f5670);
 }
 
 .m-table.is-disabled {
   opacity: 0.56;
+  filter: saturate(0.74);
 }
 
 .m-table__viewport {
   overflow: auto;
   max-inline-size: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--mecha-accent-cool) 40%, transparent)
+    transparent;
+}
+
+.m-table__viewport::-webkit-scrollbar {
+  inline-size: 9px;
+  block-size: 9px;
+}
+
+.m-table__viewport::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.m-table__viewport::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--mecha-accent-cool) 34%, transparent);
 }
 
 .m-table__table {
   inline-size: 100%;
   border-collapse: collapse;
-  font-size: 0.78rem;
+  font-size: 0.79rem;
 }
 
 .m-table__head-cell,
 .m-table__cell {
-  padding: 0.52rem 0.64rem;
-  border-bottom: 1px solid rgb(255 255 255 / 0.08);
+  padding: 0.56rem 0.68rem;
+  border-bottom: 1px solid rgb(255 255 255 / 0.09);
 }
 
 .m-table__head-cell {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   font-family: var(--mecha-font-display);
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.66rem;
-  color: color-mix(in srgb, var(--mecha-accent-cool) 74%, white);
-  background: rgb(255 255 255 / 0.03);
+  font-size: 0.65rem;
+  color: color-mix(in srgb, var(--mecha-accent-cool) 78%, white);
+  background:
+    linear-gradient(170deg, rgb(255 255 255 / 0.1), transparent 42%),
+    color-mix(in srgb, var(--mecha-bg-soft) 82%, #102033);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--mecha-accent-cool) 22%, transparent) inset;
 }
 
 .m-table__sort {
@@ -410,6 +438,12 @@ const onRowClick = async (row: TableRow, index: number) => {
   justify-content: space-between;
   gap: 0.38rem;
   cursor: pointer;
+  transition: color var(--mecha-motion-fast) ease;
+}
+
+.m-table__sort:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--mecha-accent-cool) 74%, white);
+  outline-offset: 2px;
 }
 
 .m-table__sort-icon {
@@ -417,6 +451,7 @@ const onRowClick = async (row: TableRow, index: number) => {
   opacity: 0.64;
   display: grid;
   line-height: 0.78;
+  transition: opacity var(--mecha-motion-fast) ease;
 }
 
 .m-table__sort--asc .m-table__sort-icon,
@@ -426,19 +461,23 @@ const onRowClick = async (row: TableRow, index: number) => {
 }
 
 .m-table__row {
-  transition: background var(--mecha-motion-fast) ease;
+  transition:
+    background var(--mecha-motion-fast) ease,
+    transform var(--mecha-motion-fast) var(--mecha-ease-out);
 }
 
 .m-table.is-hoverable .m-table__row:hover {
-  background: rgb(255 255 255 / 0.05);
+  background: rgb(255 255 255 / 0.06);
+  transform: translateY(-1px);
 }
 
 .m-table.is-stripe .m-table__row:nth-child(even) {
-  background: rgb(255 255 255 / 0.025);
+  background: rgb(255 255 255 / 0.028);
 }
 
 .m-table__cell {
   color: color-mix(in srgb, var(--mecha-text) 92%, #daeaff);
+  line-height: 1.4;
 }
 
 .m-table__align-center {
@@ -452,11 +491,20 @@ const onRowClick = async (row: TableRow, index: number) => {
 .m-table__empty {
   text-align: center;
   color: var(--mecha-text-muted);
-  padding: 0.88rem 0.72rem;
+  padding: 1rem 0.72rem;
+  font-size: 0.75rem;
+  background: color-mix(in srgb, var(--mecha-accent-cool) 4%, transparent);
 }
 
 .m-table--sm .m-table__head-cell,
 .m-table--sm .m-table__cell {
-  padding: 0.42rem 0.52rem;
+  padding: 0.44rem 0.54rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m-table__row,
+  .m-table__sort-icon {
+    transition: none !important;
+  }
 }
 </style>

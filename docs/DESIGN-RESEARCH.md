@@ -1,4 +1,4 @@
-# Mecha Design Research (2026-02-21)
+# Mecha Design Research (2026-02-25)
 
 The visual direction is not generic neon sci-fi.  
 Target style: industrial cockpit HUD with hard edges, tactical density, and high-contrast state signaling.
@@ -15,6 +15,28 @@ Target style: industrial cockpit HUD with hard edges, tactical density, and high
    https://www.atomhawk.com/
 5. Codrops interaction lab  
    https://tympanus.net/codrops/
+
+## Creator Demo References (YouTube / Douyin Ecosystem)
+
+1. Kevin Powell YouTube page (CSS interaction and gradient button demos)  
+   https://www.kevinpowell.co/youtube
+2. DesignCourse YouTube hub (UI animation and layout polish demos)  
+   https://www.designcourse.com/youtube
+3. Ramotion channel roundup (frontend-oriented animation patterns and creator map)  
+   https://www.ramotion.com/blog/youtube-channels-for-ux-designers/
+4. Semi Design (ByteDance / Douyin FE design system reference)  
+   https://semi.design/en-US/
+
+### Extracted Patterns Applied in This Iteration
+
+1. Strong layered surfaces  
+   Use multi-layer gradients + inner borders to avoid flat panels.
+2. Intentional motion moments  
+   Animate only key state transitions (open, hover, focus) with consistent easing.
+3. Directional light sweep  
+   Add restrained sweep highlights for controls with high action density.
+4. Semantic accent channels  
+   Keep cool/hot/tactical colors separated for information hierarchy.
 
 ## Technical and Accessibility References
 

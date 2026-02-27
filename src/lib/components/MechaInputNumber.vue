@@ -328,10 +328,6 @@ const onEnter = () => {
   padding: 0.55rem 0.72rem;
 }
 
-.m-input-number__field:focus {
-  outline: none;
-}
-
 .m-input-number__field::placeholder {
   color: color-mix(in srgb, var(--mecha-text-muted) 86%, #8ba0b8);
 }

@@ -258,9 +258,9 @@ const onKeydown = (event: KeyboardEvent) => {
 
 <style>
 .m-tabs {
-  inline-size: min(100%, 42rem);
+  inline-size: min(100%, 44rem);
   display: grid;
-  gap: 0.46rem;
+  gap: 0.52rem;
 }
 
 .m-tabs.is-disabled {
@@ -268,9 +268,17 @@ const onKeydown = (event: KeyboardEvent) => {
 }
 
 .m-tabs__nav {
+  position: relative;
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 0.26rem;
+  gap: 0.28rem;
+  border: 1px solid color-mix(in srgb, var(--mecha-border) 78%, var(--mecha-accent-cool) 24%);
+  border-radius: var(--mecha-radius-md);
+  background:
+    linear-gradient(166deg, rgb(255 255 255 / 0.08), transparent 36%),
+    color-mix(in srgb, var(--mecha-panel-soft) 86%, #101a29);
+  padding: 0.28rem;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.04);
 }
 
 .m-tabs.is-stretch .m-tabs__nav {
@@ -278,17 +286,43 @@ const onKeydown = (event: KeyboardEvent) => {
 }
 
 .m-tabs__tab {
-  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 24%, #3e5670);
-  border-radius: 9px 9px 0 0;
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 26%, #3e5670);
+  border-radius: 9px;
   background:
-    linear-gradient(176deg, rgb(255 255 255 / 0.07), transparent 42%),
-    color-mix(in srgb, var(--mecha-bg-soft) 80%, #0f1b2a);
+    linear-gradient(176deg, rgb(255 255 255 / 0.1), transparent 42%),
+    color-mix(in srgb, var(--mecha-bg-soft) 84%, #0f1b2a);
   color: var(--mecha-text-muted);
-  padding: 0.4rem 0.58rem;
+  padding: 0.42rem 0.6rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.28rem;
+  gap: 0.3rem;
+  overflow: clip;
   cursor: pointer;
+  transition:
+    transform var(--mecha-motion-fast) var(--mecha-ease-out),
+    border-color var(--mecha-motion-fast) ease,
+    background var(--mecha-motion-fast) ease,
+    color var(--mecha-motion-fast) ease,
+    box-shadow var(--mecha-motion-base) ease;
+}
+
+.m-tabs__tab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    112deg,
+    transparent 18%,
+    rgb(255 255 255 / 0.2) 36%,
+    transparent 52%
+  );
+  opacity: 0;
+  transform: translateX(-14%);
+  transition:
+    opacity var(--mecha-motion-base) ease,
+    transform var(--mecha-motion-base) ease;
 }
 
 .m-tabs.is-stretch .m-tabs__tab {
@@ -301,11 +335,30 @@ const onKeydown = (event: KeyboardEvent) => {
 }
 
 .m-tabs__tab.is-active {
-  color: color-mix(in srgb, var(--mecha-accent-cool) 82%, white);
+  color: color-mix(in srgb, var(--mecha-accent-cool) 84%, white);
   border-color: color-mix(in srgb, var(--mecha-accent-cool) 66%, white);
   background:
-    linear-gradient(140deg, rgb(32 214 255 / 0.2), transparent 72%),
-    color-mix(in srgb, var(--mecha-bg-elevated) 82%, #112031);
+    linear-gradient(138deg, rgb(32 214 255 / 0.24), transparent 74%),
+    color-mix(in srgb, var(--mecha-bg-elevated) 84%, #112031);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--mecha-accent-cool) 24%, transparent) inset,
+    0 0 18px color-mix(in srgb, var(--mecha-accent-cool) 22%, transparent);
+}
+
+.m-tabs__tab.is-active::before {
+  opacity: 0.46;
+  transform: translateX(8%);
+}
+
+.m-tabs__tab:not(:disabled):hover {
+  color: color-mix(in srgb, var(--mecha-text) 90%, white);
+  border-color: color-mix(in srgb, var(--mecha-accent-cool) 50%, #89b8dd);
+  transform: translateY(-1px);
+}
+
+.m-tabs__tab:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--mecha-accent-cool) 74%, white);
+  outline-offset: 2px;
 }
 
 .m-tabs__tab:disabled {
@@ -314,35 +367,73 @@ const onKeydown = (event: KeyboardEvent) => {
 }
 
 .m-tabs__label {
-  font-size: 0.76rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: var(--mecha-font-display);
 }
 
 .m-tabs__close {
-  inline-size: 1rem;
-  block-size: 1rem;
+  inline-size: 1.02rem;
+  block-size: 1.02rem;
   border-radius: 999px;
-  border: 1px solid rgb(255 255 255 / 0.14);
-  font-size: 0.62rem;
+  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 32%, transparent);
+  background: rgb(255 255 255 / 0.06);
+  font-size: 0.6rem;
   display: grid;
   place-items: center;
+  transition:
+    background var(--mecha-motion-fast) ease,
+    border-color var(--mecha-motion-fast) ease;
+}
+
+.m-tabs__close:hover {
+  background: rgb(255 255 255 / 0.12);
+  border-color: color-mix(in srgb, var(--mecha-accent-cool) 64%, white);
 }
 
 .m-tabs__body {
-  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 22%, #3d5570);
+  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 24%, #3d5570);
   border-radius: var(--mecha-radius-md);
   background:
-    linear-gradient(170deg, rgb(255 255 255 / 0.08), transparent 36%),
-    color-mix(in srgb, var(--mecha-bg-soft) 84%, #09131f);
-  padding: 0.66rem 0.74rem;
+    linear-gradient(170deg, rgb(255 255 255 / 0.1), transparent 36%),
+    color-mix(in srgb, var(--mecha-panel) 86%, #09131f);
+  padding: 0.72rem 0.8rem;
+  box-shadow:
+    var(--mecha-shadow-float),
+    0 0 0 1px rgb(255 255 255 / 0.04) inset;
 }
 
 .m-tabs__panel {
-  font-size: 0.78rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
   color: color-mix(in srgb, var(--mecha-text) 90%, #dbeeff);
+  animation: mecha-tab-panel-in var(--mecha-motion-base) var(--mecha-ease-out) both;
 }
 
 .m-tabs__empty {
   font-size: 0.74rem;
   color: var(--mecha-text-muted);
+}
+
+@keyframes mecha-tab-panel-in {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m-tabs__tab,
+  .m-tabs__tab::before,
+  .m-tabs__close,
+  .m-tabs__panel {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 </style>

@@ -61,16 +61,43 @@ const rootClass = computed(() =>
 <style>
 .m-tag {
   --m-tag-accent: var(--mecha-accent-cool);
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   border: 1px solid color-mix(in srgb, var(--m-tag-accent) 46%, #4a6077);
   border-radius: 999px;
   background:
-    linear-gradient(165deg, rgb(255 255 255 / 0.12), transparent 38%),
-    color-mix(in srgb, var(--mecha-bg-soft) 82%, #101a29);
+    linear-gradient(164deg, rgb(255 255 255 / 0.14), transparent 38%),
+    color-mix(in srgb, var(--mecha-panel-soft) 84%, #101a29);
   color: var(--mecha-text);
-  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06);
+  overflow: clip;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.06),
+    0 4px 12px rgb(3 10 20 / 0.28);
+}
+
+.m-tag::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    112deg,
+    transparent 20%,
+    rgb(255 255 255 / 0.24) 38%,
+    transparent 54%
+  );
+  opacity: 0.28;
+  transform: translateX(-16%);
+  transition:
+    opacity var(--mecha-motion-fast) ease,
+    transform var(--mecha-motion-base) ease;
+}
+
+.m-tag:hover::before {
+  opacity: 0.44;
+  transform: translateX(10%);
 }
 
 .m-tag--sm {
@@ -104,22 +131,46 @@ const rootClass = computed(() =>
 }
 
 .m-tag__label {
+  position: relative;
+  z-index: 1;
   font-family: var(--mecha-font-display);
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
 .m-tag__close {
+  position: relative;
+  z-index: 1;
   border: 0;
   inline-size: 1rem;
   block-size: 1rem;
   border-radius: 999px;
-  background: rgb(255 255 255 / 0.12);
+  background: rgb(255 255 255 / 0.14);
   color: inherit;
   cursor: pointer;
   font-size: 0.68rem;
   line-height: 1;
   display: inline-grid;
   place-items: center;
+  transition:
+    background var(--mecha-motion-fast) ease,
+    transform var(--mecha-motion-fast) ease;
+}
+
+.m-tag__close:hover {
+  background: rgb(255 255 255 / 0.24);
+  transform: rotate(90deg);
+}
+
+.m-tag__close:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--m-tag-accent) 72%, white);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m-tag::before,
+  .m-tag__close {
+    transition: none !important;
+  }
 }
 </style>

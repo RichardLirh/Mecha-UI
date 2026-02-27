@@ -243,7 +243,9 @@ watch(
 
 .m-collapse-fold-enter-active,
 .m-collapse-fold-leave-active {
-  transition: all var(--mecha-motion-base) ease;
+  transition:
+    opacity var(--mecha-motion-base) ease,
+    transform var(--mecha-motion-base) ease;
   transform-origin: top;
 }
 

@@ -1,37 +1,48 @@
 .m-catalog {
   position: relative;
   display: grid;
-  gap: 0.7rem;
-  padding: 0.85rem;
-  border-radius: var(--mecha-radius-md);
-  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 22%, #2d4054);
+  gap: 0.72rem;
+  padding: 0.88rem;
+  border: 1px solid color-mix(in srgb, var(--mecha-border) 72%, var(--mecha-accent-cool) 26%);
   background:
-    linear-gradient(165deg, rgb(255 255 255 / 0.07), transparent 28%),
     linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--mecha-bg-soft) 74%, #0f1723),
-      color-mix(in srgb, var(--mecha-bg) 88%, #05080d)
-    );
+      154deg,
+      color-mix(in srgb, var(--mecha-frost-strong) 56%, transparent),
+      transparent 38%
+    ),
+    linear-gradient(
+      344deg,
+      color-mix(in srgb, var(--mecha-accent) 10%, transparent),
+      transparent 65%
+    ),
+    color-mix(in srgb, var(--mecha-bg-elevated) 80%, #101318);
   overflow: clip;
+  clip-path: polygon(0 11px, 11px 0, calc(100% - 11px) 0, 100% 11px, 100% calc(100% - 11px), calc(100% - 11px) 100%, 11px 100%, 0 calc(100% - 11px));
+  backdrop-filter: blur(12px) saturate(132%);
+  box-shadow: var(--mecha-shadow-ambient);
 }
 
 .m-catalog::before {
   content: "";
   position: absolute;
+  inset: 7px;
+  pointer-events: none;
+  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 22%, transparent);
+  clip-path: inherit;
+  opacity: 0.44;
+}
+
+.m-catalog::after {
+  content: "";
+  position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(
-      180px circle at 100% 0%,
-      rgb(255 122 24 / 0.18),
-      transparent 72%
-    ),
-    radial-gradient(
-      220px circle at 0% 100%,
-      rgb(32 214 255 / 0.16),
-      transparent 70%
-    );
-  mix-blend-mode: screen;
+    radial-gradient(circle at 9px 9px, color-mix(in srgb, var(--mecha-accent-cool) 72%, white) 0 1.3px, transparent 1.9px),
+    radial-gradient(circle at calc(100% - 9px) 9px, color-mix(in srgb, var(--mecha-accent-cool) 72%, white) 0 1.3px, transparent 1.9px),
+    radial-gradient(circle at 9px calc(100% - 9px), color-mix(in srgb, var(--mecha-accent-cool) 72%, white) 0 1.3px, transparent 1.9px),
+    radial-gradient(circle at calc(100% - 9px) calc(100% - 9px), color-mix(in srgb, var(--mecha-accent-cool) 72%, white) 0 1.3px, transparent 1.9px);
+  opacity: 0.78;
 }
 
 .m-catalog__header,
@@ -41,27 +52,28 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.7rem;
+  gap: 0.72rem;
 }
 
 .m-catalog__chip {
   display: inline-flex;
   align-items: center;
-  padding: 0.15rem 0.45rem;
-  border-radius: 999px;
-  border: 1px solid rgb(255 255 255 / 0.2);
-  font-size: 0.64rem;
+  padding: 0.16rem 0.46rem;
+  border: 1px solid color-mix(in srgb, var(--mecha-border) 80%, var(--mecha-accent-cool) 30%);
+  background: color-mix(in srgb, var(--mecha-accent-cool) 12%, transparent);
+  font-size: 0.62rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: color-mix(in srgb, var(--mecha-accent-cool) 72%, #f2fbff);
+  letter-spacing: 0.12em;
+  color: color-mix(in srgb, var(--mecha-accent-cool) 78%, #f3fdff);
+  clip-path: polygon(0 6px, 6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px));
 }
 
 .m-catalog__title {
   margin: 0;
   font-family: var(--mecha-font-display);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-size: 0.84rem;
+  font-size: 0.83rem;
 }
 
 .m-catalog__body {
@@ -73,46 +85,49 @@
   margin: 0;
   color: var(--mecha-text-muted);
   font-size: 0.8rem;
-  line-height: 1.4;
+  line-height: 1.42;
 }
 
 .m-catalog__code {
   font-family: "Iosevka Web", "Consolas", monospace;
   font-size: 0.73rem;
-  color: color-mix(in srgb, var(--mecha-text) 70%, #7ccfff);
+  color: color-mix(in srgb, var(--mecha-text) 72%, #8ad7ff);
 }
 
 .m-catalog__trigger {
-  border: 1px solid color-mix(in srgb, var(--mecha-accent-cool) 32%, #45617d);
-  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--mecha-border) 78%, var(--mecha-accent-cool) 28%);
   background:
     linear-gradient(
-      to bottom,
-      rgb(255 255 255 / 0.08),
-      color-mix(in srgb, var(--mecha-bg-soft) 70%, #0c141f)
-    );
+      164deg,
+      color-mix(in srgb, var(--mecha-frost) 62%, transparent),
+      transparent 66%
+    ),
+    color-mix(in srgb, var(--mecha-bg-soft) 70%, #121720);
   color: var(--mecha-text);
   font-family: var(--mecha-font-display);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.68rem;
-  padding: 0.24rem 0.55rem;
+  letter-spacing: 0.1em;
+  font-size: 0.66rem;
+  padding: 0.24rem 0.56rem;
   cursor: pointer;
+  clip-path: polygon(0 7px, 7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px));
 }
 
-.m-catalog__trigger:hover {
+.m-catalog__trigger:hover,
+.m-catalog__trigger:focus-visible {
   color: #fff;
   border-color: color-mix(in srgb, var(--mecha-accent-cool) 70%, white);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--mecha-accent-cool) 24%, transparent);
 }
 
 .m-catalog--form {
-  border-color: color-mix(in srgb, var(--mecha-accent) 30%, #495a73);
+  border-color: color-mix(in srgb, var(--mecha-accent) 34%, var(--mecha-border));
 }
 
 .m-catalog--feedback {
-  border-color: color-mix(in srgb, var(--mecha-danger) 36%, #405066);
+  border-color: color-mix(in srgb, var(--mecha-danger) 38%, var(--mecha-border));
 }
 
 .m-catalog--navigation {
-  border-color: color-mix(in srgb, var(--mecha-accent-cool) 40%, #364b62);
+  border-color: color-mix(in srgb, var(--mecha-accent-cool) 44%, var(--mecha-border));
 }

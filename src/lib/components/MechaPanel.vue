@@ -277,7 +277,9 @@ const toggle = async () => {
 
 .m-panel-fold-enter-active,
 .m-panel-fold-leave-active {
-  transition: all var(--mecha-motion-base) ease;
+  transition:
+    opacity var(--mecha-motion-base) ease,
+    transform var(--mecha-motion-base) ease;
   transform-origin: top;
 }
 

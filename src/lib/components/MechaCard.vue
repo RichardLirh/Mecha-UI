@@ -179,40 +179,79 @@ const onKeydown = (event: KeyboardEvent) => {
   --m-card-padding: 0.9rem;
   --m-card-accent: var(--mecha-accent-cool);
   position: relative;
+  isolation: isolate;
   display: grid;
   gap: 0;
   border-radius: var(--mecha-radius-md);
   background:
-    linear-gradient(170deg, rgb(255 255 255 / 0.09), transparent 34%),
+    linear-gradient(168deg, rgb(255 255 255 / 0.12), transparent 35%),
+    radial-gradient(
+      170px 110px at 88% -24px,
+      color-mix(in srgb, var(--m-card-accent) 28%, transparent),
+      transparent 78%
+    ),
     linear-gradient(
       to bottom,
-      color-mix(in srgb, var(--mecha-bg-soft) 78%, #0d1725),
-      color-mix(in srgb, var(--mecha-bg) 92%, #060a11)
+      color-mix(in srgb, var(--mecha-panel-soft) 78%, #101a2a),
+      color-mix(in srgb, var(--mecha-bg) 94%, #060b12)
     );
   color: var(--mecha-text);
+  overflow: clip;
   transition:
-    transform var(--mecha-motion-base) ease,
-    border-color var(--mecha-motion-base) ease,
-    box-shadow var(--mecha-motion-base) ease;
+    transform var(--mecha-motion-base) var(--mecha-ease-out),
+    border-color var(--mecha-motion-base) var(--mecha-ease-out),
+    box-shadow var(--mecha-motion-base) var(--mecha-ease-out);
+}
+
+.m-card::before,
+.m-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.m-card::before {
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid color-mix(in srgb, var(--m-card-accent) 22%, transparent);
+  opacity: 0.45;
+}
+
+.m-card::after {
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      112deg,
+      transparent 0 16%,
+      rgb(255 255 255 / 0.14) 34%,
+      transparent 52%
+    );
+  background-size: 240% 100%;
+  opacity: 0.24;
+  transform: translateX(-18%);
+  transition:
+    transform var(--mecha-motion-slow) var(--mecha-ease-out),
+    opacity var(--mecha-motion-base) var(--mecha-ease-out);
 }
 
 .m-card.has-border {
-  border: 1px solid color-mix(in srgb, var(--m-card-accent) 26%, #374d64);
+  border: 1px solid color-mix(in srgb, var(--m-card-accent) 30%, var(--mecha-border));
 }
 
 .m-card.m-card--shadow-always {
   box-shadow:
-    0 18px 34px rgb(0 0 0 / 0.34),
+    var(--mecha-shadow-float),
     0 0 0 1px rgb(255 255 255 / 0.04) inset;
 }
 
 .m-card.m-card--shadow-hover {
-  box-shadow: 0 8px 18px rgb(0 0 0 / 0.22);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.26);
 }
 
 .m-card.m-card--shadow-hover:hover {
   box-shadow:
-    0 18px 34px rgb(0 0 0 / 0.34),
+    var(--mecha-shadow-float),
     0 0 0 1px rgb(255 255 255 / 0.04) inset;
 }
 
@@ -245,18 +284,27 @@ const onKeydown = (event: KeyboardEvent) => {
 }
 
 .m-card.is-interactive:hover:not(.is-disabled) {
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--m-card-accent) 44%, #4b637b);
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--m-card-accent) 52%, #a5c7e8);
+  box-shadow:
+    0 22px 38px rgb(1 8 18 / 0.5),
+    0 0 0 1px color-mix(in srgb, var(--m-card-accent) 34%, transparent) inset;
+}
+
+.m-card.is-interactive:hover:not(.is-disabled)::after {
+  opacity: 0.5;
+  transform: translateX(14%);
 }
 
 .m-card.is-interactive:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--m-card-accent) 68%, white);
+  outline: 2px solid color-mix(in srgb, var(--m-card-accent) 72%, white);
   outline-offset: 3px;
 }
 
 .m-card.is-disabled {
-  opacity: 0.58;
+  opacity: 0.56;
   cursor: not-allowed;
+  filter: saturate(0.72);
 }
 
 .m-card__header {
@@ -264,7 +312,13 @@ const onKeydown = (event: KeyboardEvent) => {
   align-items: start;
   justify-content: space-between;
   gap: 0.7rem;
-  padding: var(--m-card-padding) var(--m-card-padding) 0.66rem;
+  padding: var(--m-card-padding) var(--m-card-padding) 0.7rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--m-card-accent) 22%, transparent);
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--m-card-accent) 7%, transparent),
+    transparent 72%
+  );
 }
 
 .m-card__heading {
@@ -275,15 +329,17 @@ const onKeydown = (event: KeyboardEvent) => {
   margin: 0;
   font-family: var(--mecha-font-display);
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  font-size: 0.82rem;
-  color: color-mix(in srgb, var(--m-card-accent) 72%, white);
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  color: color-mix(in srgb, var(--m-card-accent) 76%, white);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--m-card-accent) 28%, transparent);
 }
 
 .m-card__subtitle {
-  margin: 0.28rem 0 0;
-  font-size: 0.75rem;
-  color: var(--mecha-text-muted);
+  margin: 0.3rem 0 0;
+  font-size: 0.74rem;
+  color: color-mix(in srgb, var(--mecha-text-muted) 90%, #c6d8ed);
+  line-height: 1.4;
 }
 
 .m-card__actions {
@@ -294,13 +350,23 @@ const onKeydown = (event: KeyboardEvent) => {
 
 .m-card__body {
   padding: var(--m-card-padding);
-  padding-top: 0.72rem;
+  padding-top: 0.76rem;
   display: grid;
-  gap: 0.6rem;
+  gap: 0.62rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
 }
 
 .m-card__footer {
   padding: 0.72rem var(--m-card-padding) var(--m-card-padding);
-  border-top: 1px solid rgb(255 255 255 / 0.08);
+  border-top: 1px solid color-mix(in srgb, var(--m-card-accent) 20%, transparent);
+  background: color-mix(in srgb, var(--m-card-accent) 5%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m-card,
+  .m-card::after {
+    transition: none !important;
+  }
 }
 </style>

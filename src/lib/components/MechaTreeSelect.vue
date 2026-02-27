@@ -416,7 +416,6 @@ onBeforeUnmount(() => {
 }
 
 .m-tree-select__search:focus {
-  outline: none;
   border-color: color-mix(in srgb, var(--mecha-accent-cool) 62%, white);
 }
 

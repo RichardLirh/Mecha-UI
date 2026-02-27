@@ -647,10 +647,6 @@ onBeforeUnmount(() => {
   color: color-mix(in srgb, var(--mecha-text-muted) 84%, #7f96b1);
 }
 
-.m-autocomplete__field:focus {
-  outline: none;
-}
-
 .m-autocomplete__field:focus-visible {
   outline: 2px solid color-mix(in srgb, var(--mecha-accent-cool) 68%, white);
   outline-offset: 2px;

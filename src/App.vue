@@ -2803,7 +2803,7 @@ const categoryCounts = computed(() =>
       </nav>
       <div class="epx-meta">
         <span>v0.1.0</span>
-        <a href="https://element-plus.org/" target="_blank" rel="noreferrer">
+        <a href="https://element-plus.org/" target="_blank" rel="noopener noreferrer">
           Element Plus
         </a>
       </div>
